@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Klondike Solitaire | Arcade Games</title>
+  <meta name="description" content="Classic Klondike Solitaire with drag and drop, smart click moves, auto-complete, and classic winning card cascade.">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="solitaire.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" data-title="Klondike Solitaire" data-icon="👑"></div>
+
+  <main class="solitaire-container">
+    <!-- Top Action Bar -->
+    <header class="solitaire-stats-bar glass-panel">
+      <div class="stats-left">
+        <button class="btn-primary" id="btn-new-game">New Game</button>
+        <button class="btn-secondary" id="btn-undo">Undo</button>
+        <button class="btn-secondary" id="btn-autocomplete" style="display: none;">Auto-Complete ⚡</button>
+      </div>
+      <div class="stats-right">
+        <div class="stat-item">
+          <span class="stat-lbl">MOVES</span>
+          <span class="stat-num" id="sol-moves">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-lbl">SCORE</span>
+          <span class="stat-num" id="sol-score">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-lbl">TIME</span>
+          <span class="stat-num" id="sol-timer">00:00</span>
+        </div>
+        <div class="draw-toggle">
+          <button class="btn-draw-mode active" id="btn-draw-1" data-mode="1">Draw 1</button>
+          <button class="btn-draw-mode" id="btn-draw-3" data-mode="3">Draw 3</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Solitaire Board -->
+    <div class="solitaire-board" id="sol-board">
+      <!-- Top Row: Stock, Waste, and 4 Foundations -->
+      <div class="sol-top-row">
+        <div class="stock-waste-group">
+          <div class="card-slot stock-slot" id="slot-stock" title="Draw Card">
+            <span class="slot-placeholder">🔄</span>
+          </div>
+          <div class="card-slot waste-slot" id="slot-waste"></div>
+        </div>
+
+        <div class="foundations-group">
+          <div class="card-slot foundation-slot" id="found-0" data-found="0"><span class="slot-placeholder">♠</span></div>
+          <div class="card-slot foundation-slot" id="found-1" data-found="1"><span class="slot-placeholder">♥</span></div>
+          <div class="card-slot foundation-slot" id="found-2" data-found="2"><span class="slot-placeholder">♣</span></div>
+          <div class="card-slot foundation-slot" id="found-3" data-found="3"><span class="slot-placeholder">♦</span></div>
+        </div>
+      </div>
+
+      <!-- Bottom Row: 7 Tableau Columns -->
+      <div class="tableau-row">
+        <div class="tableau-col" id="tab-0" data-col="0"></div>
+        <div class="tableau-col" id="tab-1" data-col="1"></div>
+        <div class="tableau-col" id="tab-2" data-col="2"></div>
+        <div class="tableau-col" id="tab-3" data-col="3"></div>
+        <div class="tableau-col" id="tab-4" data-col="4"></div>
+        <div class="tableau-col" id="tab-5" data-col="5"></div>
+        <div class="tableau-col" id="tab-6" data-col="6"></div>
+      </div>
+    </div>
+
+    <!-- Win Canvas Celebration (Classic Bouncing Cards) -->
+    <canvas id="sol-win-canvas" class="win-canvas hidden"></canvas>
+  </main>
+
+  <template id="game-instructions-template">
+    <h4>Klondike Solitaire Rules</h4>
+    <p>Build all four card suits up from Ace to King onto the Foundation piles.</p>
+    <ul>
+      <li><strong>Tableau:</strong> Stack cards in descending rank with alternating colors (Red Jack on Black Queen).</li>
+      <li><strong>Empty Column:</strong> Only a King or a sequence starting with a King can be placed in an empty tableau column.</li>
+      <li><strong>Stock & Waste:</strong> Click the stock pile to draw cards. Toggle Draw 1 or Draw 3 at the top.</li>
+      <li><strong>Smart Move:</strong> Click or double-click any playable card to instantly send it to the best available spot!</li>
+      <li><strong>Undo:</strong> Easily step back any accidental moves with the Undo button.</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="solitaire.js"></script>
+</body>
+</html>

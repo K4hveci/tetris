@@ -1,0 +1,130 @@
+/* Chrome Dino Styles */
+.dino-container {
+  max-width: 860px;
+  margin: 20px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dino-hud {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 24px;
+  margin-bottom: 16px;
+}
+
+.dino-stat {
+  text-align: center;
+}
+
+.dino-stat .hud-lbl {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.dino-stat .hud-val {
+  font-family: var(--font-retro);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.dino-stat .hud-val.gold {
+  color: #fbbf24;
+}
+
+.dino-canvas-wrap {
+  position: relative;
+  width: 100%;
+  background: #f7f7f7;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: background-color 0.5s ease;
+}
+
+.dino-canvas-wrap.night {
+  background: #181a26;
+}
+
+#dino-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dino-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  z-index: 10;
+  transition: opacity 0.25s ease;
+}
+
+.dino-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dino-overlay h2 {
+  font-family: var(--font-retro);
+  font-size: 1.4rem;
+  color: #22c55e;
+  margin-bottom: 12px;
+}
+
+.dino-overlay p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+/* Touch Controls */
+.dino-touch-controls {
+  display: none;
+  width: 100%;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.touch-dino-btn {
+  flex: 1;
+  max-width: 200px;
+  height: 60px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  font-family: var(--font-retro);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.touch-dino-btn:active {
+  background: rgba(34, 197, 94, 0.3);
+  border-color: #22c55e;
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .dino-touch-controls {
+    display: flex;
+  }
+}

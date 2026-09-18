@@ -1,0 +1,147 @@
+/* Minesweeper Retro Styles */
+.mines-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.diff-selector-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.diff-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.diff-btn.active {
+  background: var(--accent-purple);
+  color: white;
+  border-color: var(--accent-purple);
+}
+
+/* Classic Console Window */
+.minesweeper-window {
+  background: #181b2e;
+  border: 4px solid #334155;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+
+.mines-status-header {
+  width: 100%;
+  background: #0f1222;
+  border: 3px inset #334155;
+  border-radius: 6px;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.digital-lcd {
+  background: #05060b;
+  color: #ef4444;
+  font-family: var(--font-retro);
+  font-size: 1.6rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 2px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.smiley-face-btn {
+  width: 46px;
+  height: 46px;
+  background: #facc15;
+  border: 3px outset #fef08a;
+  border-radius: 6px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s;
+}
+
+.smiley-face-btn:active {
+  border-style: inset;
+  transform: scale(0.95);
+}
+
+/* Minefield */
+.minefield-scroll-wrapper {
+  max-width: 100%;
+  overflow: auto;
+  border: 3px inset #334155;
+  border-radius: 6px;
+  padding: 4px;
+  background: #0d0f1c;
+}
+
+.minefield-grid {
+  display: grid;
+  gap: 1px;
+  background: #1e293b;
+}
+
+.mine-cell {
+  width: 32px;
+  height: 32px;
+  background: #334155;
+  border: 2px outset #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-retro);
+  font-size: 0.85rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.mine-cell:active {
+  border-style: inset;
+}
+
+.mine-cell.revealed {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  cursor: default;
+}
+
+.mine-cell.flagged {
+  color: #ef4444;
+}
+
+.mine-cell.exploded {
+  background: #ef4444;
+}
+
+/* Number Colors */
+.num-1 { color: #3b82f6; }
+.num-2 { color: #22c55e; }
+.num-3 { color: #ef4444; }
+.num-4 { color: #8b5cf6; }
+.num-5 { color: #b91c1c; }
+.num-6 { color: #06b6d4; }
+.num-7 { color: #ffffff; }
+.num-8 { color: #94a3b8; }

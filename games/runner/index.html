@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subway Runner 3D | Arcade Games</title>
+  <meta name="description" content="Fast-paced 3-lane Subway Surfers-style infinite runner. Switch lanes, jump over barriers, slide under overhead signs, and collect coins!">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="runner.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" data-title="Subway Runner 3D" data-icon="🏃"></div>
+
+  <main class="runner-container">
+    <!-- Top HUD -->
+    <div class="runner-hud glass-panel">
+      <div class="hud-item">
+        <span class="hud-lbl">DISTANCE</span>
+        <span class="hud-val" id="runner-dist">0m</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-lbl">COINS</span>
+        <span class="hud-val gold"><span class="coin-ico">🪙</span> <span id="runner-coins">0</span></span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-lbl">MULTIPLIER</span>
+        <span class="hud-val cyan" id="runner-mult">1x</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-lbl">BEST DISTANCE</span>
+        <span class="hud-val" id="runner-high-dist">0m</span>
+      </div>
+    </div>
+
+    <!-- Active Powerups Bar -->
+    <div class="powerups-active-bar" id="powerups-bar"></div>
+
+    <!-- 3D Track Canvas -->
+    <div class="runner-canvas-wrap glass-panel">
+      <canvas id="runner-canvas" width="480" height="640"></canvas>
+
+      <!-- Overlay Screen -->
+      <div class="runner-overlay" id="runner-overlay">
+        <h2 id="runner-overlay-title">SUBWAY RUNNER</h2>
+        <p id="runner-overlay-desc">Dodge trains, jump hurdles, slide under signs!</p>
+        <button class="btn-primary" id="btn-start-runner">Start Run</button>
+      </div>
+    </div>
+
+    <!-- Mobile Touch Controls -->
+    <div class="runner-mobile-controls">
+      <button class="touch-ctrl-btn" id="ctrl-left">◀ Left</button>
+      <div class="touch-mid-group">
+        <button class="touch-ctrl-btn acc" id="ctrl-up">▲ Jump</button>
+        <button class="touch-ctrl-btn acc" id="ctrl-down">▼ Slide</button>
+      </div>
+      <button class="touch-ctrl-btn" id="ctrl-right">Right ▶</button>
+    </div>
+  </main>
+
+  <template id="game-instructions-template">
+    <h4>Subway Runner 3D Rules</h4>
+    <p>Sprint through the subway tracks, dodging oncoming trains and hurdles while collecting coins and power-ups!</p>
+    <ul>
+      <li><strong>Low Barricades:</strong> Jump over them.</li>
+      <li><strong>Overhead Signs:</strong> Slide / duck underneath them.</li>
+      <li><strong>Subway Trains:</strong> Shift lanes to dodge!</li>
+      <li><strong>Magnet Power-up (🧲):</strong> Automatically pulls in all nearby coins.</li>
+      <li><strong>2x Multiplier (⚡):</strong> Doubles your points for 15 seconds!</li>
+    </ul>
+    <h4>Controls</h4>
+    <ul>
+      <li><span class="key-badge">←</span> / <span class="key-badge">A</span> Move to Left Lane</li>
+      <li><span class="key-badge">→</span> / <span class="key-badge">D</span> Move to Right Lane</li>
+      <li><span class="key-badge">↑</span> / <span class="key-badge">W</span> / <span class="key-badge">Space</span> Jump</li>
+      <li><span class="key-badge">↓</span> / <span class="key-badge">S</span> Slide / Roll</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="runner.js"></script>
+</body>
+</html>

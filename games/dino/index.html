@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chrome Dino Runner | Arcade Games</title>
+  <meta name="description" content="Classic offline Chrome T-Rex dinosaur endless runner with cacti, flying pterodactyls, ducking, and day/night transitions.">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="dino.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" data-title="Chrome Dino Runner" data-icon="🦖"></div>
+
+  <main class="dino-container">
+    <div class="dino-hud glass-panel">
+      <div class="dino-stat">
+        <span class="hud-lbl">SCORE</span>
+        <span class="hud-val" id="dino-score">00000</span>
+      </div>
+      <div class="dino-stat">
+        <span class="hud-lbl">HIGH SCORE</span>
+        <span class="hud-val gold" id="dino-high">HI 00000</span>
+      </div>
+      <div class="dino-stat">
+        <span class="hud-lbl">SPEED</span>
+        <span class="hud-val" id="dino-speed">1.0x</span>
+      </div>
+    </div>
+
+    <div class="dino-canvas-wrap glass-panel" id="dino-wrap">
+      <canvas id="dino-canvas" width="800" height="250"></canvas>
+      <div class="dino-overlay" id="dino-overlay">
+        <h2>T-REX RUNNER</h2>
+        <p>Press Space or Tap to Jump over Cacti & Duck Pterodactyls</p>
+        <button class="btn-primary" id="btn-start-dino">Start Run</button>
+      </div>
+    </div>
+
+    <!-- Mobile Touch Controls -->
+    <div class="dino-touch-controls">
+      <button class="touch-dino-btn" id="touch-jump">▲ JUMP</button>
+      <button class="touch-dino-btn" id="touch-duck">▼ DUCK</button>
+    </div>
+  </main>
+
+  <template id="game-instructions-template">
+    <h4>Chrome Dino Runner Rules</h4>
+    <p>Jump over desert cacti and duck underneath flying pterodactyls as the game steadily accelerates!</p>
+    <ul>
+      <li><strong>Cacti:</strong> Jump over them.</li>
+      <li><strong>Pterodactyls:</strong> Some fly low (must duck!), while others fly higher (jump or run under).</li>
+      <li><strong>Night Mode:</strong> Every 700 points the desert switches between day and night!</li>
+    </ul>
+    <h4>Controls</h4>
+    <ul>
+      <li><span class="key-badge">Space</span> / <span class="key-badge">↑</span> Jump</li>
+      <li><span class="key-badge">↓</span> Duck (Crouch)</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="dino.js"></script>
+</body>
+</html>

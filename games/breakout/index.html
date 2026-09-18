@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brick Breaker Arcade | Arcade Games</title>
+  <meta name="description" content="Dynamic retro Brick Breaker arcade game with multi-ball, laser paddle, power-ups, and combo bonuses.">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="breakout.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" data-title="Brick Breaker Arcade" data-icon="🧱"></div>
+
+  <main class="breakout-container">
+    <div class="breakout-hud glass-panel">
+      <div class="hud-stat">
+        <span class="hud-lbl">SCORE</span>
+        <span class="hud-val" id="breakout-score">0</span>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-lbl">HIGH SCORE</span>
+        <span class="hud-val gold" id="breakout-high">0</span>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-lbl">LIVES</span>
+        <span class="hud-val" id="breakout-lives">❤️❤️❤️</span>
+      </div>
+    </div>
+
+    <div class="breakout-canvas-wrap glass-panel">
+      <canvas id="breakout-canvas" width="600" height="520"></canvas>
+
+      <div class="breakout-overlay" id="breakout-overlay">
+        <h2 id="breakout-overlay-title">BRICK BREAKER</h2>
+        <p id="breakout-overlay-desc">Smash all neon bricks and collect power-ups!</p>
+        <button class="btn-primary" id="btn-start-breakout">Launch Ball</button>
+      </div>
+    </div>
+  </main>
+
+  <template id="game-instructions-template">
+    <h4>Brick Breaker Rules</h4>
+    <p>Deflect the bouncing ball with your paddle to smash through the matrix of neon bricks.</p>
+    <ul>
+      <li><strong>Power-Ups:</strong>
+        <ul>
+          <li>💥 Multi-Ball: Triples your active balls.</li>
+          <li>🏓 Wide Paddle: Increases paddle width.</li>
+          <li>⚡ Laser: Shoot lasers with Space or Click to destroy bricks!</li>
+          <li>❤️ Extra Life: Adds a heart.</li>
+        </ul>
+      </li>
+    </ul>
+    <h4>Controls</h4>
+    <ul>
+      <li><span class="key-badge">Mouse</span> / <span class="key-badge">Touch</span> / <span class="key-badge">←</span> <span class="key-badge">→</span> Move paddle</li>
+      <li><span class="key-badge">Space</span> / <span class="key-badge">Click</span> Launch ball / Fire lasers</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="breakout.js"></script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+/* European Roulette Styles */
+.roulette-container {
+  max-width: 1040px;
+  margin: 16px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Top Row: Wheel and History */
+.roulette-top-row {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 20px;
+  align-items: stretch;
+}
+
+.wheel-box {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2d180a, #120904);
+  border: 10px solid #5a3518;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9), inset 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+#roulette-wheel-canvas {
+  border-radius: 50%;
+}
+
+.wheel-center-hub {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #d97706, #78350f);
+  border: 3px solid #fbbf24;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hub-num {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: white;
+}
+
+/* History Panel */
+.history-panel {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.history-header {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 8px;
+}
+
+.history-pills-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+  min-height: 40px;
+}
+
+.history-pill {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.history-pill.red { background: #dc2626; }
+.history-pill.black { background: #18181b; border: 1px solid #3f3f46; }
+.history-pill.green { background: #16a34a; }
+
+.round-outcome-box {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  border: 1px solid var(--border-glass);
+}
+
+.outcome-lbl {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.outcome-val {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #fbbf24;
+}
+
+.current-wager-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.wager-lbl {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.wager-val {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #38bdf8;
+}
+
+/* Betting Table Felt */
+.roulette-table-felt {
+  width: 100%;
+  background: #093821;
+  border: 8px solid #3d2312;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(0,0,0,0.7);
+  overflow-x: auto;
+}
+
+.felt-grid-wrapper {
+  display: grid;
+  grid-template-columns: 50px 1fr 60px;
+  grid-template-rows: auto auto auto;
+  gap: 2px;
+  min-width: 680px;
+  user-select: none;
+}
+
+/* Cells */
+.bet-cell {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease;
+  min-height: 48px;
+}
+
+.bet-cell:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #fbbf24;
+}
+
+.cell-zero {
+  grid-row: 1 / 4;
+  background: #15803d;
+  font-size: 1.4rem;
+}
+
+/* Numbers Matrix (3 rows x 12 cols) */
+.numbers-matrix {
+  display: grid;
+  grid-template-rows: repeat(3, 48px);
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2px;
+}
+
+.cell-num.red {
+  background: #b91c1c;
+}
+.cell-num.black {
+  background: #18181b;
+}
+
+/* Columns */
+.col-bets-wrapper {
+  display: grid;
+  grid-template-rows: repeat(3, 48px);
+  gap: 2px;
+}
+
+.cell-col {
+  font-size: 0.8rem;
+}
+
+/* Dozens */
+.dozens-wrapper {
+  grid-column: 2 / 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 2px;
+}
+
+/* Outside */
+.outside-bets-wrapper {
+  grid-column: 2 / 3;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.cell-outside.cell-red {
+  background: #b91c1c;
+}
+.cell-outside.cell-black {
+  background: #18181b;
+}
+
+/* Chip stacked on cell */
+.chip-marker {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fbbf24, #d97706);
+  border: 2px dashed #ffffff;
+  color: #000;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.8);
+  pointer-events: none;
+  animation: popIn 0.15s ease;
+}
+
+/* Bottom Bar */
+.roulette-controls-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 16px 24px;
+  margin-top: 20px;
+  gap: 16px;
+}
+
+.chip-tray {
+  display: flex;
+  gap: 12px;
+}
+
+.casino-chip.active {
+  outline: 3px solid var(--accent-cyan);
+  transform: translateY(-4px);
+}
+
+.roulette-action-btns {
+  display: flex;
+  gap: 12px;
+}
+
+.spin-roulette-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+  padding: 12px 32px;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 850px) {
+  .roulette-top-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .wheel-box {
+    width: 300px;
+    height: 300px;
+  }
+  #roulette-wheel-canvas {
+    width: 260px;
+    height: 260px;
+  }
+}

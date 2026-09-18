@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackjack 21 | Arcade Games</title>
+  <meta name="description" content="Play authentic Casino Blackjack 21 with chips betting, double down, split, and instant refill bankroll.">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="blackjack.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" 
+       data-title="Blackjack 21" 
+       data-icon="🃏" 
+       data-chips="blackjack_chips" 
+       data-default-chips="1000">
+  </div>
+
+  <main class="blackjack-container">
+    <!-- Casino Table Felt -->
+    <div class="casino-table">
+      <!-- Dealer Area -->
+      <section class="dealer-section">
+        <div class="hand-header">
+          <span class="role-badge">DEALER</span>
+          <span class="hand-score" id="dealer-score-badge">0</span>
+        </div>
+        <div class="cards-holder" id="dealer-cards">
+          <!-- Cards rendered here -->
+        </div>
+      </section>
+
+      <!-- Center Status & Felt Rules -->
+      <div class="table-center-felt">
+        <div class="felt-text-main">BLACKJACK PAYS 3 TO 2</div>
+        <div class="felt-text-sub">Dealer Must Draw to 16 and Stand on all 17s</div>
+        <div class="round-status-banner" id="round-status-msg">Place Your Bet to Begin</div>
+      </div>
+
+      <!-- Player Area -->
+      <section class="player-section">
+        <div class="hand-header">
+          <span class="role-badge player">YOU</span>
+          <span class="hand-score" id="player-score-badge">0</span>
+        </div>
+        <div class="cards-holder" id="player-cards">
+          <!-- Cards rendered here -->
+        </div>
+      </section>
+
+      <!-- Bottom Betting & Action Controls -->
+      <footer class="table-controls">
+        <!-- Current Bet Display -->
+        <div class="current-bet-display">
+          <span class="bet-label">CURRENT BET</span>
+          <span class="bet-amount">$<span id="current-bet-val">0</span></span>
+        </div>
+
+        <!-- Action Buttons (Hit, Stand, Double, Split, Deal) -->
+        <div class="action-btn-group" id="in-game-actions">
+          <button class="btn-primary action-btn" id="btn-hit" disabled>Hit</button>
+          <button class="btn-secondary action-btn" id="btn-stand" disabled>Stand</button>
+          <button class="btn-secondary action-btn" id="btn-double" disabled>Double 2x</button>
+          <button class="btn-primary action-btn deal-btn" id="btn-deal">DEAL</button>
+          <button class="btn-secondary action-btn" id="btn-clear-bet">Clear</button>
+        </div>
+
+        <!-- Chip Selectors -->
+        <div class="chips-selector-row" id="chips-tray">
+          <button class="casino-chip chip-5" data-chip="5" title="Bet $5">$5</button>
+          <button class="casino-chip chip-10" data-chip="10" title="Bet $10">$10</button>
+          <button class="casino-chip chip-25" data-chip="25" title="Bet $25">$25</button>
+          <button class="casino-chip chip-50" data-chip="50" title="Bet $50">$50</button>
+          <button class="casino-chip chip-100" data-chip="100" title="Bet $100">$100</button>
+          <button class="casino-chip chip-500" data-chip="500" title="Bet $500">$500</button>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <template id="game-instructions-template">
+    <h4>Blackjack 21 Rules</h4>
+    <p>Beat the dealer by getting a hand total as close to 21 as possible without going over (busting).</p>
+    <ul>
+      <li><strong>Card Values:</strong> Numbers 2–10 are face value. Jacks, Queens, Kings are worth 10. Aces count as 1 or 11.</li>
+      <li><strong>Blackjack:</strong> An Ace with a 10-value card on initial deal pays 3:2!</li>
+      <li><strong>Dealer Rules:</strong> Dealer must hit until reaching at least 17, and then stand.</li>
+      <li><strong>Double Down:</strong> Double your current bet, receive exactly one more card, and automatically stand.</li>
+      <li><strong>Chips Bankroll:</strong> If you run low on chips, hit the <strong>+ Refill</strong> button in the top right to get 1,000 fresh chips anytime!</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="blackjack.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flappy Bird | Arcade Games</title>
+  <meta name="description" content="Play classic Flappy Bird with smooth physics, animated wings, pipe obstacles, and medals.">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="flappy.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" data-title="Flappy Bird" data-icon="🐤"></div>
+
+  <main class="flappy-container">
+    <div class="flappy-canvas-wrap glass-panel">
+      <!-- Live Score Badge -->
+      <div class="flappy-score-badge" id="flappy-live-score">0</div>
+
+      <canvas id="flappy-canvas" width="400" height="580"></canvas>
+
+      <!-- Start / Game Over Screen -->
+      <div class="flappy-overlay" id="flappy-overlay">
+        <h2 id="flappy-overlay-title">FLAPPY BIRD</h2>
+        <div class="flappy-scoreboard" id="flappy-scoreboard" style="display: none;">
+          <div class="medal-slot">
+            <span class="medal-lbl">MEDAL</span>
+            <span class="medal-icon" id="medal-icon">🥉</span>
+          </div>
+          <div class="scores-slot">
+            <div class="score-row">
+              <span>SCORE</span>
+              <strong id="final-score">0</strong>
+            </div>
+            <div class="score-row">
+              <span>BEST</span>
+              <strong id="final-best">0</strong>
+            </div>
+          </div>
+        </div>
+        <p id="flappy-overlay-sub">Click, Tap, or Press Space to Flap</p>
+        <button class="btn-primary" id="btn-flappy-action">Start Flight</button>
+      </div>
+    </div>
+  </main>
+
+  <template id="game-instructions-template">
+    <h4>Flappy Bird Rules</h4>
+    <p>Tap to flap your wings and navigate safely through the green pipe obstacles.</p>
+    <ul>
+      <li><strong>Point:</strong> Passing through each pair of pipes awards 1 point.</li>
+      <li><strong>Medals:</strong>
+        <ul>
+          <li>🥉 Bronze: 10+ Points</li>
+          <li>🥈 Silver: 20+ Points</li>
+          <li>🥇 Gold: 30+ Points</li>
+          <li>💎 Platinum: 40+ Points</li>
+        </ul>
+      </li>
+    </ul>
+    <h4>Controls</h4>
+    <ul>
+      <li><span class="key-badge">Space</span> / <span class="key-badge">↑</span> / <span class="key-badge">Click/Tap</span> Flap wings</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="flappy.js"></script>
+</body>
+</html>

@@ -1,713 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Classic Tetris</title>
-<style>
-  :root{
-    --bg:#0b0e17;
-    --panel:#141826;
-    --panel-border:#2a3049;
-    --accent:#5ee1ff;
-    --text:#e7ecf7;
-    --muted:#8891ab;
-    --cell:28px;
-  }
-  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-  html,body{
-    margin:0;padding:0;height:100%;
-    background:radial-gradient(1200px 800px at 50% -10%, #1a2036 0%, var(--bg) 60%);
-    color:var(--text);
-    font-family:'Courier New', ui-monospace, Menlo, monospace;
-    overscroll-behavior:none;
-    touch-action:none;
-    user-select:none;
-  }
-  #app{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    min-height:100%;
-    padding:16px 12px 12px;
-  }
-  h1{
-    margin:0 0 12px;
-    font-size:22px;
-    letter-spacing:4px;
-    color:var(--accent);
-    text-shadow:0 0 12px rgba(94,225,255,.5);
-  }
-  .layout{
-    display:flex;
-    gap:18px;
-    align-items:flex-start;
-    justify-content:center;
-    flex-wrap:wrap;
-  }
-  #boardWrap{
-    position:relative;
-    border:3px solid var(--panel-border);
-    border-radius:6px;
-    background:#05070d;
-    box-shadow:0 0 0 4px #05070d, 0 10px 30px rgba(0,0,0,.6), inset 0 0 40px rgba(94,225,255,.03);
-  }
-  canvas{display:block;}
-  #overlay{
-    position:absolute;
-    inset:0;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    gap:10px;
-    background:rgba(5,7,13,.85);
-    text-align:center;
-    padding:20px;
-  }
-  #overlay.show{display:flex;}
-  #overlay h2{
-    margin:0;
-    color:var(--accent);
-    font-size:24px;
-    letter-spacing:3px;
-  }
-  #overlay p{margin:0;color:var(--muted);font-size:13px;line-height:1.6;}
-  .btn{
-    background:linear-gradient(180deg,#2a3358,#1c2340);
-    border:1px solid var(--panel-border);
-    color:var(--text);
-    padding:10px 18px;
-    border-radius:6px;
-    font-family:inherit;
-    font-size:14px;
-    letter-spacing:1px;
-    cursor:pointer;
-    margin-top:6px;
-  }
-  .btn:active{transform:translateY(1px);}
-  .side{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    width:150px;
-  }
-  .panel{
-    background:var(--panel);
-    border:1px solid var(--panel-border);
-    border-radius:8px;
-    padding:10px 12px;
-  }
-  .panel h3{
-    margin:0 0 8px;
-    font-size:11px;
-    letter-spacing:2px;
-    color:var(--muted);
-    text-transform:uppercase;
-  }
-  .stat{
-    font-size:20px;
-    color:var(--accent);
-    font-weight:bold;
-  }
-  #nextCanvas{display:block;margin:0 auto;}
-  .controlsInfo{font-size:11px;color:var(--muted);line-height:1.8;}
-  .controlsInfo b{color:var(--text);}
-  #soundToggle{width:100%;}
-  #pauseBtn{width:100%;}
-
-  /* Mobile touch controls */
-  #touchControls{
-    display:none;
-    margin-top:14px;
-    width:100%;
-    max-width:420px;
-    flex-direction:column;
-    gap:8px;
-  }
-  .touchRow{display:flex;gap:8px;justify-content:center;}
-  .tbtn{
-    flex:1;
-    background:linear-gradient(180deg,#2a3358,#1c2340);
-    border:1px solid var(--panel-border);
-    color:var(--text);
-    font-size:20px;
-    padding:16px 0;
-    border-radius:8px;
-    text-align:center;
-  }
-  .tbtn:active{background:#3a4478;}
-  .tbtn.wide{flex:2;}
-
-  @media (max-width: 720px){
-    #touchControls{display:flex;}
-    h1{font-size:18px;}
-    .layout{gap:10px;}
-    .side{width:110px;}
-    .stat{font-size:16px;}
-    .panel{padding:8px;}
-    .controlsInfo{display:none;}
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcade Vault | Instant Web Games Collection</title>
+  <meta name="description" content="Play 14 free instant arcade games: Tetris, Blackjack, Snake, Solitaire, Subway Runner, Dino, Flappy Bird, Slots, Roulette, Poker, 2048, and Idle Tycoon.">
+  <link rel="stylesheet" href="./shared/css/shared.css">
+  <link rel="stylesheet" href="./portal.css">
 </head>
 <body>
-<div id="app">
-  <h1>TETRIS</h1>
-  <div class="layout">
-    <div class="side">
-      <div class="panel">
-        <h3>Score</h3>
-        <div class="stat" id="scoreVal">0</div>
-      </div>
-      <div class="panel">
-        <h3>Lines</h3>
-        <div class="stat" id="linesVal">0</div>
-      </div>
-      <div class="panel">
-        <h3>Level</h3>
-        <div class="stat" id="levelVal">1</div>
-      </div>
-      <div class="panel">
-        <h3>Next</h3>
-        <canvas id="nextCanvas" width="100" height="100"></canvas>
-      </div>
+  <!-- Top Navigation Header -->
+  <header class="arcade-nav">
+    <div class="arcade-nav-left">
+      <a href="./index.html" class="arcade-nav-brand">
+        <span class="brand-icon">👾</span>
+        <span class="brand-text">ARCADE VAULT</span>
+        <span class="brand-badge">PRO</span>
+      </a>
     </div>
 
-    <div id="boardWrap">
-      <canvas id="board" width="280" height="560"></canvas>
-      <div id="overlay" class="show">
-        <h2 id="overlayTitle">TETRIS</h2>
-        <p id="overlayText">Arrow keys to move/rotate<br>Space to hard drop<br>P to pause</p>
-        <button class="btn" id="startBtn">START</button>
-      </div>
+    <div class="arcade-nav-right">
+      <button class="btn-secondary" id="btn-random-game" title="Pick a random game">
+        <span>🎲</span>
+        <span class="btn-text">Random Game</span>
+      </button>
+      <button class="nav-icon-btn active" id="portal-btn-sound" title="Toggle Sound">
+        <span id="portal-sound-icon">🔊</span>
+      </button>
+      <button class="nav-icon-btn" id="portal-btn-fullscreen" title="Toggle Fullscreen">
+        <span>⛶</span>
+      </button>
     </div>
+  </header>
 
-    <div class="side">
-      <div class="panel">
-        <h3>Controls</h3>
-        <div class="controlsInfo">
-          <b>&larr; &rarr;</b> move<br>
-          <b>&uarr;</b> rotate<br>
-          <b>&darr;</b> soft drop<br>
-          <b>Space</b> hard drop<br>
-          <b>P</b> pause<br>
-          <b>M</b> mute
-        </div>
+  <!-- Hero Section -->
+  <section class="portal-hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <span class="hero-tag">🕹️ RETRO & CASINO COLLECTION</span>
+      <h1 class="hero-title">INSERT COIN & PLAY</h1>
+      <p class="hero-sub">
+        14 fully playable, high-performance browser games. No installs, no downloads, 100% free.
+      </p>
+
+      <!-- Global Search & Filter Bar -->
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="game-search-input" placeholder="Search games (e.g. Tetris, Blackjack, Runner, Poker)..." autocomplete="off">
+        <button id="search-clear-btn" class="search-clear hidden">&times;</button>
       </div>
-      <button class="btn" id="pauseBtn">PAUSE (P)</button>
-      <button class="btn" id="soundToggle">SOUND: ON</button>
+
+      <!-- Category Filter Tabs -->
+      <nav class="category-tabs" id="category-tabs">
+        <button class="cat-tab active" data-cat="all">🌟 All Games (14)</button>
+        <button class="cat-tab" data-cat="arcade">🕹️ Arcade & Action</button>
+        <button class="cat-tab" data-cat="casino">🎲 Casino & Betting</button>
+        <button class="cat-tab" data-cat="puzzle">🧩 Cards & Puzzles</button>
+        <button class="cat-tab" data-cat="idle">⏳ Idle & Casual</button>
+      </nav>
     </div>
+  </section>
+
+  <!-- Games Grid -->
+  <main class="portal-main">
+    <div class="games-grid" id="games-grid">
+      <!-- Injected dynamically by portal.js -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="portal-footer">
+    <p>Built for GitHub Pages with HTML5 Canvas & Vanilla JavaScript.</p>
+    <p class="footer-sub">Enjoy the arcade collection!</p>
+  </footer>
+
+  <div class="arcade-toast" id="arcade-global-toast">
+    <span id="toast-icon">✨</span>
+    <span id="toast-message">Notification</span>
   </div>
 
-  <div id="touchControls">
-    <div class="touchRow">
-      <div class="tbtn" id="tLeft">&larr;</div>
-      <div class="tbtn" id="tRotate">&uarr;</div>
-      <div class="tbtn" id="tRight">&rarr;</div>
-    </div>
-    <div class="touchRow">
-      <div class="tbtn wide" id="tDown">&darr; SOFT</div>
-      <div class="tbtn wide" id="tDrop">DROP</div>
-    </div>
-    <div class="touchRow">
-      <div class="tbtn" id="tPause">PAUSE</div>
-      <div class="tbtn" id="tSound">SOUND</div>
-    </div>
-  </div>
-</div>
-
-<script>
-(function(){
-  "use strict";
-
-  // ---------- Config ----------
-  const COLS = 10, ROWS = 20;
-  let CELL = 28;
-  const canvas = document.getElementById('board');
-  const ctx = canvas.getContext('2d');
-  const nextCanvas = document.getElementById('nextCanvas');
-  const nctx = nextCanvas.getContext('2d');
-
-  function fitCanvas(){
-    // Fit board to viewport on small screens
-    const maxW = Math.min(window.innerWidth - 24, 400);
-    const wrapW = Math.min(maxW, 280);
-    CELL = Math.floor(wrapW / COLS);
-    canvas.width = CELL * COLS;
-    canvas.height = CELL * ROWS;
-  }
-  fitCanvas();
-  window.addEventListener('resize', ()=>{ fitCanvas(); draw(); });
-
-  const COLORS = {
-    I:'#5ee1ff', O:'#ffe45e', T:'#c06bff', S:'#6bff8f',
-    Z:'#ff6b6b', J:'#6b8fff', L:'#ffab5e'
-  };
-
-  const SHAPES = {
-    I: [[0,1],[1,1],[2,1],[3,1]],
-    O: [[1,0],[2,0],[1,1],[2,1]],
-    T: [[1,0],[0,1],[1,1],[2,1]],
-    S: [[1,0],[2,0],[0,1],[1,1]],
-    Z: [[0,0],[1,0],[1,1],[2,1]],
-    J: [[0,0],[0,1],[1,1],[2,1]],
-    L: [[2,0],[0,1],[1,1],[2,1]]
-  };
-  const PIECE_KEYS = Object.keys(SHAPES);
-
-  // ---------- Audio (WebAudio, no external files) ----------
-  let audioCtx = null;
-  let soundOn = true;
-  function ensureAudio(){
-    if(!audioCtx){
-      try{ audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }catch(e){ soundOn=false; }
-    }
-  }
-  function beep(freq, dur, type, vol){
-    if(!soundOn) return;
-    ensureAudio();
-    if(!audioCtx) return;
-    const t0 = audioCtx.currentTime;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = type || 'square';
-    osc.frequency.setValueAtTime(freq, t0);
-    gain.gain.setValueAtTime((vol!==undefined?vol:0.15), t0);
-    gain.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
-    osc.connect(gain).connect(audioCtx.destination);
-    osc.start(t0);
-    osc.stop(t0 + dur);
-  }
-  const sfx = {
-    move: ()=>beep(220,0.05,'square',0.06),
-    rotate: ()=>beep(330,0.07,'square',0.08),
-    drop: ()=>beep(110,0.08,'sawtooth',0.12),
-    lock: ()=>beep(150,0.06,'square',0.1),
-    lineClear: (n)=>{
-      const base = 440;
-      for(let i=0;i<n;i++){
-        setTimeout(()=>beep(base + i*140, 0.12, 'triangle', 0.15), i*70);
-      }
-    },
-    levelUp: ()=>{ beep(523,0.1,'triangle',0.15); setTimeout(()=>beep(659,0.12,'triangle',0.15),100); setTimeout(()=>beep(784,0.18,'triangle',0.18),220); },
-    gameOver: ()=>{ beep(220,0.2,'sawtooth',0.15); setTimeout(()=>beep(175,0.2,'sawtooth',0.15),200); setTimeout(()=>beep(110,0.4,'sawtooth',0.18),400); }
-  };
-
-  // ---------- Game state ----------
-  let grid, current, nextPiece, score, lines, level, dropInterval, dropTimer, lastTime;
-  let gameOver, paused, running;
-  let softDropping = false;
-
-  function emptyGrid(){
-    const g = [];
-    for(let r=0;r<ROWS;r++) g.push(new Array(COLS).fill(null));
-    return g;
-  }
-
-  function randomPiece(){
-    const key = PIECE_KEYS[Math.floor(Math.random()*PIECE_KEYS.length)];
-    return newPieceFromKey(key);
-  }
-  function newPieceFromKey(key){
-    return {
-      key: key,
-      cells: SHAPES[key].map(c=>c.slice()),
-      color: COLORS[key],
-      x: 3, y: -1,
-      rot: 0
-    };
-  }
-
-  function resetGame(){
-    grid = emptyGrid();
-    score = 0; lines = 0; level = 1;
-    dropInterval = 800;
-    gameOver = false; paused = false;
-    current = randomPiece();
-    nextPiece = randomPiece();
-    updateStats();
-    lastTime = performance.now();
-    dropTimer = 0;
-  }
-
-  function updateStats(){
-    document.getElementById('scoreVal').textContent = score;
-    document.getElementById('linesVal').textContent = lines;
-    document.getElementById('levelVal').textContent = level;
-  }
-
-  // ---------- Collision & rotation ----------
-  function cellsAt(piece, ox, oy){
-    return piece.cells.map(([cx,cy])=>[cx+ (ox!==undefined?ox:piece.x), cy+(oy!==undefined?oy:piece.y)]);
-  }
-
-  function collides(piece, ox, oy, cells){
-    const pts = cells || cellsAt(piece, ox, oy);
-    for(const [x,y] of pts){
-      if(x<0 || x>=COLS || y>=ROWS) return true;
-      if(y>=0 && grid[y][x]) return true;
-    }
-    return false;
-  }
-
-  function rotatePiece(piece){
-    if(piece.key === 'O') return piece.cells.map(c=>c.slice());
-    // rotate around approximate center using simple matrix rotation on a 4x4-ish local grid
-    const cx = 1, cy = 1; // pivot approx
-    return piece.cells.map(([x,y])=>{
-      const rx = cx - (y - cy);
-      const ry = cy + (x - cx);
-      return [rx, ry];
-    });
-  }
-
-  function tryRotate(){
-    const rotated = rotatePiece(current);
-    const test = {...current, cells: rotated};
-    const kicks = [0,-1,1,-2,2];
-    for(const k of kicks){
-      if(!collides(test, current.x + k, current.y)){
-        current.cells = rotated;
-        current.x += k;
-        sfx.rotate();
-        draw();
-        return;
-      }
-    }
-  }
-
-  function move(dx){
-    if(!collides(current, current.x+dx, current.y)){
-      current.x += dx;
-      sfx.move();
-      draw();
-    }
-  }
-
-  function softDrop(){
-    if(!collides(current, current.x, current.y+1)){
-      current.y += 1;
-      score += 1;
-      updateStats();
-    } else {
-      lockPiece();
-    }
-    draw();
-  }
-
-  function hardDrop(){
-    let dist = 0;
-    while(!collides(current, current.x, current.y+1)){
-      current.y += 1;
-      dist++;
-    }
-    score += dist*2;
-    sfx.drop();
-    lockPiece();
-    draw();
-  }
-
-  function lockPiece(){
-    const pts = cellsAt(current);
-    for(const [x,y] of pts){
-      if(y<0){ // topped out
-        triggerGameOver();
-        return;
-      }
-      grid[y][x] = current.color;
-    }
-    sfx.lock();
-    clearLines();
-    current = nextPiece;
-    nextPiece = randomPiece();
-    drawNext();
-    if(collides(current, current.x, current.y)){
-      triggerGameOver();
-    }
-  }
-
-  function clearLines(){
-    let cleared = [];
-    for(let r=0;r<ROWS;r++){
-      if(grid[r].every(c=>c!==null)) cleared.push(r);
-    }
-    if(cleared.length){
-      for(const r of cleared){
-        grid.splice(r,1);
-        grid.unshift(new Array(COLS).fill(null));
-      }
-      const points = [0,100,300,500,800][cleared.length] * level;
-      score += points;
-      lines += cleared.length;
-      const newLevel = Math.floor(lines/10) + 1;
-      if(newLevel !== level){
-        level = newLevel;
-        dropInterval = Math.max(100, 800 - (level-1)*70);
-        sfx.levelUp();
-      }
-      sfx.lineClear(cleared.length);
-      updateStats();
-    }
-  }
-
-  function triggerGameOver(){
-    gameOver = true;
-    running = false;
-    sfx.gameOver();
-    showOverlay('GAME OVER', `Score: ${score} &nbsp;|&nbsp; Lines: ${lines}`, 'PLAY AGAIN');
-  }
-
-  // ---------- Drawing ----------
-  function drawCell(c, r, color){
-    const x = c*CELL, y = r*CELL;
-    ctx.fillStyle = color;
-    ctx.fillRect(x+1, y+1, CELL-2, CELL-2);
-    ctx.strokeStyle = 'rgba(255,255,255,0.15)';
-    ctx.lineWidth = 1;
-    ctx.strokeRect(x+1.5, y+1.5, CELL-3, CELL-3);
-    // inner highlight
-    ctx.fillStyle = 'rgba(255,255,255,0.12)';
-    ctx.fillRect(x+1, y+1, CELL-2, 3);
-  }
-
-  function draw(){
-    ctx.fillStyle = '#05070d';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    // grid lines
-    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
-    for(let c=0;c<=COLS;c++){
-      ctx.beginPath(); ctx.moveTo(c*CELL,0); ctx.lineTo(c*CELL,canvas.height); ctx.stroke();
-    }
-    for(let r=0;r<=ROWS;r++){
-      ctx.beginPath(); ctx.moveTo(0,r*CELL); ctx.lineTo(canvas.width,r*CELL); ctx.stroke();
-    }
-
-    // locked cells
-    for(let r=0;r<ROWS;r++){
-      for(let c=0;c<COLS;c++){
-        if(grid[r][c]) drawCell(c,r,grid[r][c]);
-      }
-    }
-
-    if(!gameOver && current){
-      // ghost piece
-      let ghostY = current.y;
-      while(!collides(current, current.x, ghostY+1)) ghostY++;
-      ctx.globalAlpha = 0.25;
-      for(const [x,y] of cellsAt(current, current.x, ghostY)){
-        if(y>=0) drawCell(x,y,current.color);
-      }
-      ctx.globalAlpha = 1;
-
-      // current piece
-      for(const [x,y] of cellsAt(current)){
-        if(y>=0) drawCell(x,y,current.color);
-      }
-    }
-  }
-
-  function drawNext(){
-    nctx.fillStyle = '#05070d';
-    nctx.fillRect(0,0,nextCanvas.width,nextCanvas.height);
-    if(!nextPiece) return;
-    const cs = 20;
-    const xs = nextPiece.cells.map(c=>c[0]);
-    const ys = nextPiece.cells.map(c=>c[1]);
-    const minX = Math.min(...xs), maxX = Math.max(...xs);
-    const minY = Math.min(...ys), maxY = Math.max(...ys);
-    const w = (maxX-minX+1)*cs, h = (maxY-minY+1)*cs;
-    const offX = (nextCanvas.width - w)/2 - minX*cs;
-    const offY = (nextCanvas.height - h)/2 - minY*cs;
-    nctx.fillStyle = nextPiece.color;
-    for(const [x,y] of nextPiece.cells){
-      nctx.fillRect(x*cs+offX+1, y*cs+offY+1, cs-2, cs-2);
-    }
-  }
-
-  // ---------- Overlay ----------
-  const overlay = document.getElementById('overlay');
-  const overlayTitle = document.getElementById('overlayTitle');
-  const overlayText = document.getElementById('overlayText');
-  const startBtn = document.getElementById('startBtn');
-
-  function showOverlay(title, html, btnLabel){
-    overlayTitle.textContent = title;
-    overlayText.innerHTML = html;
-    startBtn.textContent = btnLabel;
-    overlay.classList.add('show');
-  }
-  function hideOverlay(){
-    overlay.classList.remove('show');
-  }
-
-  function startGame(){
-    ensureAudio();
-    if(audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-    resetGame();
-    drawNext();
-    draw();
-    hideOverlay();
-    running = true;
-    paused = false;
-    document.getElementById('pauseBtn').textContent = 'PAUSE (P)';
-    lastTime = performance.now();
-    requestAnimationFrame(loop);
-  }
-
-  startBtn.addEventListener('click', startGame);
-
-  // ---------- Pause ----------
-  function togglePause(){
-    if(!running || gameOver) return;
-    paused = !paused;
-    document.getElementById('pauseBtn').textContent = paused ? 'RESUME (P)' : 'PAUSE (P)';
-    if(paused){
-      showOverlay('PAUSED', 'Press P or tap Resume to continue', 'RESUME');
-    } else {
-      hideOverlay();
-      lastTime = performance.now();
-    }
-  }
-  document.getElementById('pauseBtn').addEventListener('click', togglePause);
-  document.getElementById('tPause').addEventListener('click', togglePause);
-
-  // when overlay's button is used to resume from pause, hijack startBtn behavior
-  startBtn.addEventListener('click', function(){
-    if(paused && running){
-      // resuming instead of starting new game
-    }
-  });
-  // Fix: separate logic so start button resumes if paused
-  startBtn.addEventListener('click', function(e){
-    if(gameOver || !running){
-      // normal start already handled above via startGame (guard double-call)
-    }
-  }, true);
-
-  // Rebuild click handling cleanly:
-  startBtn.onclick = function(){
-    if(running && paused){
-      togglePause();
-    } else {
-      startGame();
-    }
-  };
-
-  // ---------- Sound toggle ----------
-  function updateSoundBtn(){
-    document.getElementById('soundToggle').textContent = 'SOUND: ' + (soundOn ? 'ON' : 'OFF');
-  }
-  document.getElementById('soundToggle').addEventListener('click', ()=>{
-    soundOn = !soundOn;
-    updateSoundBtn();
-  });
-  document.getElementById('tSound').addEventListener('click', ()=>{
-    soundOn = !soundOn;
-    updateSoundBtn();
-  });
-
-  // ---------- Keyboard ----------
-  const keyState = {};
-  document.addEventListener('keydown', (e)=>{
-    const k = e.key.toLowerCase();
-    if(['arrowleft','arrowright','arrowup','arrowdown',' '].includes(k)) e.preventDefault();
-
-    if(k === 'p'){ togglePause(); return; }
-    if(k === 'm'){ soundOn = !soundOn; updateSoundBtn(); return; }
-    if(!running || paused || gameOver) return;
-
-    if(k === 'arrowleft'){ move(-1); }
-    else if(k === 'arrowright'){ move(1); }
-    else if(k === 'arrowup'){ tryRotate(); }
-    else if(k === 'arrowdown'){ softDrop(); }
-    else if(k === ' '){ hardDrop(); }
-  });
-
-  // ---------- Touch controls ----------
-  function bindHold(el, fn, repeatDelay, repeatEvery){
-    let interval=null, timeout=null;
-    const start = (e)=>{
-      e.preventDefault();
-      if(!running || paused || gameOver) return;
-      fn();
-      timeout = setTimeout(()=>{
-        interval = setInterval(fn, repeatEvery||100);
-      }, repeatDelay||300);
-    };
-    const stop = (e)=>{
-      if(e) e.preventDefault();
-      clearTimeout(timeout); clearInterval(interval);
-    };
-    el.addEventListener('touchstart', start, {passive:false});
-    el.addEventListener('touchend', stop, {passive:false});
-    el.addEventListener('touchcancel', stop, {passive:false});
-    el.addEventListener('mousedown', start);
-    document.addEventListener('mouseup', stop);
-  }
-
-  bindHold(document.getElementById('tLeft'), ()=>move(-1));
-  bindHold(document.getElementById('tRight'), ()=>move(1));
-  document.getElementById('tRotate').addEventListener('touchstart', (e)=>{e.preventDefault(); if(running&&!paused&&!gameOver) tryRotate();}, {passive:false});
-  document.getElementById('tRotate').addEventListener('click', ()=>{ if(running&&!paused&&!gameOver) tryRotate(); });
-  bindHold(document.getElementById('tDown'), ()=>softDrop(), 200, 60);
-  document.getElementById('tDrop').addEventListener('touchstart', (e)=>{e.preventDefault(); if(running&&!paused&&!gameOver) hardDrop();}, {passive:false});
-  document.getElementById('tDrop').addEventListener('click', ()=>{ if(running&&!paused&&!gameOver) hardDrop(); });
-
-  // swipe support on board for mobile
-  let touchStartX=null, touchStartY=null, touchMoved=false;
-  canvas.addEventListener('touchstart', (e)=>{
-    const t = e.touches[0];
-    touchStartX = t.clientX; touchStartY = t.clientY; touchMoved=false;
-  }, {passive:true});
-  canvas.addEventListener('touchmove', (e)=>{
-    if(touchStartX===null || !running || paused || gameOver) return;
-    const t = e.touches[0];
-    const dx = t.clientX - touchStartX;
-    const dy = t.clientY - touchStartY;
-    if(Math.abs(dx) > 30){
-      move(dx>0?1:-1);
-      touchStartX = t.clientX;
-      touchMoved = true;
-    } else if(dy > 40){
-      softDrop();
-      touchStartY = t.clientY;
-      touchMoved = true;
-    }
-  }, {passive:true});
-  canvas.addEventListener('touchend', (e)=>{
-    if(!touchMoved && running && !paused && !gameOver){
-      tryRotate();
-    }
-    touchStartX = null; touchStartY = null;
-  });
-
-  // ---------- Game loop ----------
-  function loop(now){
-    if(!running) return;
-    if(!paused && !gameOver){
-      const dt = now - lastTime;
-      lastTime = now;
-      dropTimer += dt;
-      if(dropTimer > dropInterval){
-        dropTimer = 0;
-        if(!collides(current, current.x, current.y+1)){
-          current.y += 1;
-        } else {
-          lockPiece();
-        }
-        draw();
-      }
-    }
-    requestAnimationFrame(loop);
-  }
-
-  // initial paint
-  resetGame();
-  drawNext();
-  draw();
-  updateSoundBtn();
-})();
-</script>
+  <script src="./shared/js/audio-engine.js"></script>
+  <script src="./portal.js"></script>
 </body>
 </html>

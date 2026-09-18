@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idle Coin Tycoon | Arcade Games</title>
+  <meta name="description" content="Build your ultimate retro arcade empire in Idle Coin Tycoon. Tap for coins, unlock legendary cabinets, and become a billionaire tycoon.">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="idle.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" data-title="Idle Coin Tycoon" data-icon="🪙"></div>
+
+  <main class="idle-container">
+    <!-- Left Column: Clicker & Stats -->
+    <section class="idle-hero-section glass-panel">
+      <div class="stats-badge">
+        <span class="label">ARCADE REVENUE</span>
+        <div class="coin-total-wrap">
+          <span class="currency-sym">🪙</span>
+          <span class="coin-total" id="coin-balance">0</span>
+        </div>
+        <div class="cps-display">
+          <span>+</span><span id="coins-per-sec">0</span> <span>coins / sec</span>
+        </div>
+      </div>
+
+      <!-- Giant Interactive Coin Button -->
+      <div class="token-button-wrapper">
+        <button class="big-token-btn" id="big-token-btn" aria-label="Tap to earn coins">
+          <div class="token-inner">
+            <span class="token-icon">👾</span>
+            <span class="token-sub">INSERT COIN</span>
+          </div>
+          <div class="token-ring"></div>
+        </button>
+        <div id="click-particles-container"></div>
+      </div>
+
+      <div class="click-power-info">
+        <span>Click Power: <strong>+<span id="click-power-val">1</span></strong> per tap</span>
+      </div>
+
+      <div class="action-buttons-row">
+        <button class="btn-secondary" id="btn-prestige">🏆 Renovation (<span id="trophy-count">0</span>)</button>
+        <button class="btn-secondary" id="btn-save-progress">💾 Save Game</button>
+        <button class="btn-secondary" id="btn-reset-idle" style="color: var(--accent-red);">Reset</button>
+      </div>
+    </section>
+
+    <!-- Right Column: Upgrades & Arcade Cabinets -->
+    <section class="idle-upgrades-section glass-panel">
+      <div class="upgrades-header">
+        <h2>Arcade Upgrades & Cabinets</h2>
+        <span class="upgrades-sub">Invest in legendary cabinets to generate passive revenue</span>
+      </div>
+
+      <!-- Click Upgrades -->
+      <div class="click-upgrade-box" id="click-upgrade-card">
+        <div class="upg-icon">⚡</div>
+        <div class="upg-info">
+          <div class="upg-name">Turbo Micro-Switches</div>
+          <div class="upg-desc">+<span id="click-upgrade-boost">1</span> coin per manual tap</div>
+        </div>
+        <button class="btn-primary upg-buy-btn" id="btn-buy-click-upg">
+          🪙 <span id="click-upgrade-cost">15</span>
+        </button>
+      </div>
+
+      <!-- Generator List -->
+      <div class="generators-list" id="generators-container">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Golden Coin Bonus Floating Banner -->
+  <div id="golden-token" class="golden-token hidden" title="Golden Token Frenzy!">
+    ⭐ 7X FRENZY!
+  </div>
+
+  <template id="game-instructions-template">
+    <h4>About Idle Coin Tycoon</h4>
+    <p>Tap the big arcade token to collect coins. Use your revenue to buy iconic arcade machines that generate coins automatically around the clock!</p>
+    <h4>Upgrades & Cabinets</h4>
+    <ul>
+      <li><strong>Turbo Switches:</strong> Increases the coin value of each manual click.</li>
+      <li><strong>Arcade Cabinets:</strong> From classic Pong to VR Pods, each cabinet produces coins per second (CPS).</li>
+      <li><strong>Golden Frenzy:</strong> Keep your eye out for the floating Golden Star! Click it for 20 seconds of 7x revenue.</li>
+      <li><strong>Renovation (Prestige):</strong> Reset your arcade when you reach 1,000,000 coins to gain Trophies (+10% global boost per trophy).</li>
+    </ul>
+    <h4>Controls</h4>
+    <ul>
+      <li><span class="key-badge">Click / Tap</span> Big coin to earn tokens.</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="idle.js"></script>
+</body>
+</html>

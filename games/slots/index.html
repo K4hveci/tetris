@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deluxe Slots 777 | Arcade Games</title>
+  <meta name="description" content="5-reel deluxe casino slot machine with 10 paylines, wild symbols, scatter free spins, big wins, and points to gamble.">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="slots.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" 
+       data-title="Deluxe Slots 777" 
+       data-icon="🎰" 
+       data-chips="slots_chips" 
+       data-default-chips="1000">
+  </div>
+
+  <main class="slots-container">
+    <!-- Slot Cabinet Header -->
+    <header class="slots-cabinet-header glass-panel">
+      <div class="jackpot-banner">
+        <span class="jackpot-tag">PROGRESSIVE JACKPOT</span>
+        <span class="jackpot-val">🪙 <span id="jackpot-counter">77,770</span></span>
+      </div>
+      <div class="free-spins-indicator" id="free-spins-badge" style="display: none;">
+        ⭐ FREE SPINS: <span id="fs-count">0</span> (3X MULTIPLIER!)
+      </div>
+    </header>
+
+    <!-- Slot Machine Screen / Reels Matrix -->
+    <div class="slot-reels-frame">
+      <div class="slot-reels-matrix" id="reels-container">
+        <!-- 5 Reels -->
+        <div class="slot-reel" id="reel-0"><div class="reel-strip" id="strip-0"></div></div>
+        <div class="slot-reel" id="reel-1"><div class="reel-strip" id="strip-1"></div></div>
+        <div class="slot-reel" id="reel-2"><div class="reel-strip" id="strip-2"></div></div>
+        <div class="slot-reel" id="reel-3"><div class="reel-strip" id="strip-3"></div></div>
+        <div class="slot-reel" id="reel-4"><div class="reel-strip" id="strip-4"></div></div>
+      </div>
+
+      <!-- Win Announcement Overlay -->
+      <div class="win-banner-overlay" id="win-banner" style="display: none;">
+        <span class="win-title" id="win-banner-title">BIG WIN!</span>
+        <span class="win-val">+🪙 <span id="win-banner-val">0</span></span>
+      </div>
+    </div>
+
+    <!-- Machine Control Deck -->
+    <footer class="slots-deck glass-panel">
+      <div class="deck-readouts">
+        <div class="readout-box">
+          <span class="readout-lbl">TOTAL BET</span>
+          <span class="readout-val" id="total-bet-val">🪙 10</span>
+        </div>
+        <div class="readout-box">
+          <span class="readout-lbl">LAST WIN</span>
+          <span class="readout-val highlight" id="last-win-val">🪙 0</span>
+        </div>
+        <div class="readout-box">
+          <span class="readout-lbl">CHIPS</span>
+          <span class="readout-val gold" id="deck-chips-val">🪙 1,000</span>
+        </div>
+      </div>
+
+      <div class="deck-controls">
+        <div class="bet-adjust-group">
+          <button class="btn-secondary bet-btn" id="btn-bet-down">-</button>
+          <span class="bet-amount-badge" id="bet-step-display">$10</span>
+          <button class="btn-secondary bet-btn" id="btn-bet-up">+</button>
+          <button class="btn-secondary" id="btn-max-bet">MAX</button>
+        </div>
+
+        <button class="btn-secondary" id="btn-auto-spin">Auto: OFF</button>
+        <button class="btn-primary spin-main-btn" id="btn-spin">SPIN</button>
+      </div>
+    </footer>
+  </main>
+
+  <template id="game-instructions-template">
+    <h4>Deluxe Slots 777 Rules</h4>
+    <p>Spin the 5 reels and match symbols along the 10 active paylines from left to right!</p>
+    <ul>
+      <li><strong>🌟 WILD:</strong> Replaces any symbol except Scatter.</li>
+      <li><strong>⚡ SCATTER:</strong> Hit 3 or more Scatters anywhere to trigger <strong>10 FREE SPINS</strong> with an automatic <strong>3x Multiplier</strong>!</li>
+      <li><strong>💎 DIAMOND:</strong> Highest paying regular symbol (up to 500x bet).</li>
+      <li><strong>7️⃣ LUCKY 7:</strong> 300x line bet for 5 of a kind.</li>
+      <li><strong>Chips Bankroll:</strong> If you run out of chips, hit the <strong>+ Refill</strong> button at top to get 1,000 free coins instantly!</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="slots.js"></script>
+</body>
+</html>

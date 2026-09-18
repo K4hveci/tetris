@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texas Hold'em Poker | Arcade Games</title>
+  <meta name="description" content="Play Texas Hold'em Poker against 3 smart AI bots with full betting rounds, hand rankings, and pot management.">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="poker.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" 
+       data-title="Texas Hold'em Poker" 
+       data-icon="♠️" 
+       data-chips="poker_chips" 
+       data-default-chips="1000">
+  </div>
+
+  <main class="poker-container">
+    <!-- Poker Table Felt -->
+    <div class="poker-table">
+      <!-- Bot 2 (Top Center: Tight Tina) -->
+      <div class="player-seat seat-top" id="seat-bot2">
+        <div class="player-avatar">👩</div>
+        <div class="seat-info">
+          <span class="player-name">Tight Tina</span>
+          <span class="player-chips">$<span id="bot2-chips">1000</span></span>
+        </div>
+        <div class="seat-cards" id="bot2-cards"></div>
+        <div class="seat-action-tag" id="bot2-tag"></div>
+      </div>
+
+      <!-- Bot 1 (Left: Bluffing Bob) -->
+      <div class="player-seat seat-left" id="seat-bot1">
+        <div class="player-avatar">🤠</div>
+        <div class="seat-info">
+          <span class="player-name">Bluffing Bob</span>
+          <span class="player-chips">$<span id="bot1-chips">1000</span></span>
+        </div>
+        <div class="seat-cards" id="bot1-cards"></div>
+        <div class="seat-action-tag" id="bot1-tag"></div>
+      </div>
+
+      <!-- Center Community Cards & Pot -->
+      <div class="poker-center-felt">
+        <div class="pot-display">
+          <span class="pot-label">TOTAL POT</span>
+          <span class="pot-amount">🪙 $<span id="table-pot-val">0</span></span>
+        </div>
+
+        <div class="community-cards-row" id="community-cards">
+          <!-- 5 Community Cards -->
+        </div>
+
+        <div class="poker-dealer-badge" id="dealer-button" title="Dealer Button">D</div>
+        <div class="stage-announcement" id="stage-msg">Click 'Deal Hand' to Play</div>
+      </div>
+
+      <!-- Bot 3 (Right: Balanced Ben) -->
+      <div class="player-seat seat-right" id="seat-bot3">
+        <div class="player-avatar">🧔</div>
+        <div class="seat-info">
+          <span class="player-name">Balanced Ben</span>
+          <span class="player-chips">$<span id="bot3-chips">1000</span></span>
+        </div>
+        <div class="seat-cards" id="bot3-cards"></div>
+        <div class="seat-action-tag" id="bot3-tag"></div>
+      </div>
+
+      <!-- Hero / User (Bottom) -->
+      <div class="player-seat seat-hero" id="seat-hero">
+        <div class="seat-action-tag" id="hero-tag"></div>
+        <div class="seat-cards" id="hero-cards"></div>
+        <div class="seat-info">
+          <span class="player-name">YOU</span>
+          <span class="hand-rank-name" id="hero-hand-rank">Pair of Aces</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Action Controls Bar -->
+    <footer class="poker-controls-bar glass-panel">
+      <div class="controls-status">
+        <span>Call Amount: <strong>$<span id="to-call-val">0</span></strong></span>
+      </div>
+
+      <div class="controls-buttons">
+        <button class="btn-danger action-btn" id="btn-fold" disabled>Fold</button>
+        <button class="btn-secondary action-btn" id="btn-check-call" disabled>Check</button>
+        
+        <div class="raise-wrapper">
+          <button class="btn-primary action-btn" id="btn-raise" disabled>Raise to $<span id="raise-amt-val">40</span></button>
+          <input type="range" id="raise-slider" min="20" max="200" step="10" value="40" disabled>
+        </div>
+
+        <button class="btn-primary action-btn deal-hand-btn" id="btn-start-poker-hand">Deal Hand</button>
+      </div>
+    </footer>
+  </main>
+
+  <template id="game-instructions-template">
+    <h4>Texas Hold'em Poker Rules</h4>
+    <p>Each player is dealt 2 private hole cards. Five community cards are placed face-up in the center.</p>
+    <ul>
+      <li><strong>Objective:</strong> Make the best 5-card poker hand using any combination of your 2 hole cards and the 5 community cards.</li>
+      <li><strong>Betting Rounds:</strong>
+        <ol>
+          <li>Pre-Flop (after 2 cards dealt)</li>
+          <li>The Flop (first 3 community cards)</li>
+          <li>The Turn (4th community card)</li>
+          <li>The River (5th community card)</li>
+          <li>Showdown!</li>
+        </ol>
+      </li>
+      <li><strong>Hand Rankings:</strong> Royal Flush > Straight Flush > 4 of a Kind > Full House > Flush > Straight > 3 of a Kind > 2 Pair > 1 Pair > High Card.</li>
+      <li><strong>Chips Bankroll:</strong> If you run low, hit <strong>+ Refill</strong> at the top to instantly reload 1,000 chips!</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="poker.js"></script>
+</body>
+</html>

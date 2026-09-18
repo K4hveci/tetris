@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetris Deluxe | Arcade Games</title>
+  <meta name="description" content="Play classic Tetris with ghost piece, hold queue, hard drop, and neon visual effects.">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="tetris.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" data-title="Tetris Deluxe" data-icon="🧱"></div>
+
+  <main class="tetris-main-wrap">
+    <div class="tetris-layout">
+      <!-- Left Side Panel: Hold Queue & Controls -->
+      <aside class="tetris-side-col">
+        <div class="glass-panel side-box">
+          <div class="side-title">HOLD</div>
+          <canvas id="hold-canvas" width="100" height="100"></canvas>
+          <div class="side-hint">Key: <span class="key-badge">C</span></div>
+        </div>
+
+        <div class="glass-panel side-box stats-box">
+          <div class="stat-group">
+            <span class="stat-lbl">SCORE</span>
+            <span class="stat-val" id="tetris-score">0</span>
+          </div>
+          <div class="stat-group">
+            <span class="stat-lbl">HIGH SCORE</span>
+            <span class="stat-val highlight" id="tetris-high-score">0</span>
+          </div>
+          <div class="stat-group">
+            <span class="stat-lbl">LINES</span>
+            <span class="stat-val" id="tetris-lines">0</span>
+          </div>
+          <div class="stat-group">
+            <span class="stat-lbl">LEVEL</span>
+            <span class="stat-val" id="tetris-level">1</span>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="btn-start-tetris">Play Game</button>
+        <button class="btn-secondary" id="btn-pause-tetris">Pause</button>
+      </aside>
+
+      <!-- Center Board -->
+      <section class="tetris-board-wrap glass-panel">
+        <canvas id="tetris-canvas" width="300" height="600"></canvas>
+        <div class="overlay-screen" id="tetris-overlay">
+          <h2 id="overlay-title">TETRIS</h2>
+          <p id="overlay-msg">Press Play or Space to Start</p>
+          <button class="btn-primary" id="btn-overlay-action">Start Game</button>
+        </div>
+      </section>
+
+      <!-- Right Side Panel: Next Queue -->
+      <aside class="tetris-side-col">
+        <div class="glass-panel side-box">
+          <div class="side-title">NEXT</div>
+          <canvas id="next-canvas" width="100" height="100"></canvas>
+        </div>
+
+        <div class="glass-panel side-box controls-summary">
+          <div class="side-title">KEYS</div>
+          <div class="key-line"><span class="key-badge">←</span> <span class="key-badge">→</span> Move</div>
+          <div class="key-line"><span class="key-badge">↑</span> Rotate</div>
+          <div class="key-line"><span class="key-badge">↓</span> Soft Drop</div>
+          <div class="key-line"><span class="key-badge">SPACE</span> Hard Drop</div>
+          <div class="key-line"><span class="key-badge">C</span> Hold Piece</div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Mobile Touch Controls -->
+    <div class="mobile-controls-wrap">
+      <div class="mobile-btn-group">
+        <button class="touch-btn" id="m-btn-left">◀</button>
+        <button class="touch-btn" id="m-btn-down">▼</button>
+        <button class="touch-btn" id="m-btn-right">▶</button>
+      </div>
+      <div class="mobile-btn-group">
+        <button class="touch-btn touch-btn-acc" id="m-btn-rotate">🔄</button>
+        <button class="touch-btn touch-btn-drop" id="m-btn-drop">⚡</button>
+        <button class="touch-btn" id="m-btn-hold">HOLD</button>
+      </div>
+    </div>
+  </main>
+
+  <template id="game-instructions-template">
+    <h4>Tetris Rules & Scoring</h4>
+    <p>Fit the falling tetromino shapes together to fill horizontal rows. When a row is completely filled with blocks, it vanishes and awards points!</p>
+    <ul>
+      <li><strong>Single Line:</strong> 100 × Level points</li>
+      <li><strong>Double Lines:</strong> 300 × Level points</li>
+      <li><strong>Triple Lines:</strong> 500 × Level points</li>
+      <li><strong>Tetris (4 Lines):</strong> 800 × Level points</li>
+    </ul>
+    <h4>Controls</h4>
+    <ul>
+      <li><span class="key-badge">←</span> <span class="key-badge">→</span> Shift piece left/right</li>
+      <li><span class="key-badge">↑</span> / <span class="key-badge">X</span> Rotate clockwise</li>
+      <li><span class="key-badge">Z</span> Rotate counter-clockwise</li>
+      <li><span class="key-badge">↓</span> Soft drop faster</li>
+      <li><span class="key-badge">Space</span> Instant hard drop</li>
+      <li><span class="key-badge">C</span> / <span class="key-badge">Shift</span> Swap to Hold queue</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="tetris.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 Deluxe | Arcade Games</title>
+  <meta name="description" content="Play the addictive 2048 sliding number puzzle with smooth animations, undo moves, and high score tracking.">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="2048.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" data-title="2048 Deluxe" data-icon="🔢"></div>
+
+  <main class="puzzle-container">
+    <header class="puzzle-header glass-panel">
+      <div class="header-left">
+        <h1 class="logo-2048">2048</h1>
+        <p class="puzzle-sub">Join numbers to reach <strong>2048!</strong></p>
+      </div>
+      <div class="header-right">
+        <div class="score-card">
+          <span class="score-lbl">SCORE</span>
+          <span class="score-num" id="puz-score">0</span>
+        </div>
+        <div class="score-card">
+          <span class="score-lbl">BEST</span>
+          <span class="score-num gold" id="puz-best">0</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="puzzle-actions-bar">
+      <button class="btn-primary" id="btn-restart-2048">New Game</button>
+      <button class="btn-secondary" id="btn-undo-2048">Undo</button>
+    </div>
+
+    <!-- 4x4 Board -->
+    <div class="grid-board-frame glass-panel">
+      <div class="grid-board" id="board-2048">
+        <!-- 16 cells -->
+      </div>
+
+      <!-- Game Over / Win Overlay -->
+      <div class="puzzle-overlay" id="puz-overlay" style="display: none;">
+        <h2 id="puz-overlay-title">GAME OVER</h2>
+        <p id="puz-overlay-msg">No more valid moves!</p>
+        <button class="btn-primary" id="btn-puz-action">Try Again</button>
+      </div>
+    </div>
+  </main>
+
+  <template id="game-instructions-template">
+    <h4>2048 Rules</h4>
+    <p>Use your arrow keys or swipe gestures to slide tiles across the board. When two tiles with the same number touch, they merge into one!</p>
+    <ul>
+      <li>2 + 2 = 4</li>
+      <li>4 + 4 = 8</li>
+      <li>... keep merging until you create the <strong>2048</strong> tile!</li>
+    </ul>
+    <h4>Controls</h4>
+    <ul>
+      <li><span class="key-badge">←</span> <span class="key-badge">↑</span> <span class="key-badge">→</span> <span class="key-badge">↓</span> Slide tiles</li>
+      <li>Touch swipe in any direction on mobile screens</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="2048.js"></script>
+</body>
+</html>

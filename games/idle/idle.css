@@ -1,0 +1,335 @@
+/* Idle Coin Tycoon Styles */
+.idle-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 28px;
+}
+
+/* Left Hero Section */
+.idle-hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-badge {
+  background: rgba(10, 12, 22, 0.6);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 16px 24px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.stats-badge .label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+
+.coin-total-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 8px 0 4px;
+}
+
+.coin-total-wrap .currency-sym {
+  font-size: 2rem;
+}
+
+.coin-total {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #fbbf24;
+  text-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+}
+
+.cps-display {
+  color: var(--accent-cyan);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* Big Token Button */
+.token-button-wrapper {
+  position: relative;
+  margin: 20px 0;
+}
+
+.big-token-btn {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: none;
+  background: radial-gradient(circle at 35% 35%, #fbbf24, #d97706 60%, #78350f 100%);
+  box-shadow: 0 0 35px rgba(245, 158, 11, 0.45), inset 0 0 15px rgba(255, 255, 255, 0.5), 0 12px 25px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.08s ease, filter 0.15s ease;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.big-token-btn:hover {
+  filter: brightness(1.08);
+  transform: scale(1.03);
+}
+
+.big-token-btn:active {
+  transform: scale(0.94);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.6), inset 0 0 25px rgba(0, 0, 0, 0.4);
+}
+
+.token-inner {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  border: 3px dashed rgba(255, 255, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.token-icon {
+  font-size: 4rem;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+.token-sub {
+  font-family: var(--font-retro);
+  font-size: 0.6rem;
+  color: #78350f;
+  margin-top: 6px;
+  letter-spacing: 1px;
+}
+
+/* Floating click particles */
+#click-particles-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.click-float-text {
+  position: absolute;
+  color: #fde047;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  pointer-events: none;
+  animation: floatUpFade 0.9s forwards cubic-bezier(0.1, 0.8, 0.3, 1);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(245, 158, 11, 0.8);
+  z-index: 50;
+}
+
+@keyframes floatUpFade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    transform: translate(-50%, -100%) scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -150%) scale(0.9);
+  }
+}
+
+.click-power-info {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.action-buttons-row {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.action-buttons-row button {
+  flex: 1;
+  padding: 8px;
+  font-size: 0.8rem;
+}
+
+/* Right Upgrades Section */
+.idle-upgrades-section {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.upgrades-header {
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 14px;
+}
+
+.upgrades-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+
+.upgrades-sub {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.click-upgrade-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-bottom: 18px;
+}
+
+.upg-icon {
+  font-size: 2rem;
+}
+
+.upg-info {
+  flex: 1;
+}
+
+.upg-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.upg-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.upg-buy-btn {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+}
+
+/* Generators List */
+.generators-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.generator-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  transition: all 0.2s ease;
+}
+
+.generator-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.gen-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.gen-icon {
+  font-size: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gen-details .gen-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.gen-details .gen-rate {
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+}
+
+.gen-details .gen-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.gen-action {
+  text-align: right;
+}
+
+.gen-action button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(1);
+  transform: none;
+}
+
+/* Golden Frenzy Token */
+.golden-token {
+  position: fixed;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.9rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.8);
+  cursor: pointer;
+  z-index: 999;
+  animation: pulseGold 0.8s infinite alternate ease-in-out;
+  user-select: none;
+}
+
+.golden-token.hidden {
+  display: none;
+}
+
+@keyframes pulseGold {
+  from { transform: scale(1); filter: drop-shadow(0 0 10px gold); }
+  to { transform: scale(1.1); filter: drop-shadow(0 0 20px gold); }
+}
+
+@media (max-width: 900px) {
+  .idle-container {
+    grid-template-columns: 1fr;
+  }
+}

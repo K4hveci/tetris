@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>European Roulette | Arcade Games</title>
+  <meta name="description" content="Classic European Roulette with physics-based spinning wheel, interactive betting grid, inside and outside bets, and points to gamble.">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="roulette.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" 
+       data-title="European Roulette" 
+       data-icon="🎯" 
+       data-chips="roulette_chips" 
+       data-default-chips="1000">
+  </div>
+
+  <main class="roulette-container">
+    <!-- Top Area: Wheel & History -->
+    <div class="roulette-top-row">
+      <!-- Wheel Canvas Frame -->
+      <div class="wheel-box glass-panel">
+        <canvas id="roulette-wheel-canvas" width="340" height="340"></canvas>
+        <div class="wheel-center-hub">
+          <span class="hub-num" id="winning-num-badge">--</span>
+        </div>
+      </div>
+
+      <!-- Result & History Panel -->
+      <div class="history-panel glass-panel">
+        <div class="history-header">
+          <span>RECENT NUMBERS</span>
+        </div>
+        <div class="history-pills-list" id="history-list">
+          <!-- Filled by JS -->
+        </div>
+
+        <div class="round-outcome-box">
+          <span class="outcome-lbl">ROUND RESULT</span>
+          <span class="outcome-val" id="round-outcome-msg">Place bets and spin!</span>
+        </div>
+
+        <div class="current-wager-box">
+          <span class="wager-lbl">TOTAL BET:</span>
+          <span class="wager-val">$<span id="total-wager-val">0</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Betting Table Felt -->
+    <div class="roulette-table-felt">
+      <div class="felt-grid-wrapper" id="betting-board">
+        <!-- 0 Green Cell -->
+        <div class="bet-cell cell-zero" data-bet="num-0">0</div>
+
+        <!-- 36 Numbers Grid (3 rows x 12 cols) -->
+        <div class="numbers-matrix" id="numbers-grid">
+          <!-- Rendered 1 to 36 by JS -->
+        </div>
+
+        <!-- 2 to 1 Columns -->
+        <div class="col-bets-wrapper">
+          <div class="bet-cell cell-col" data-bet="col-3">2 to 1</div>
+          <div class="bet-cell cell-col" data-bet="col-2">2 to 1</div>
+          <div class="bet-cell cell-col" data-bet="col-1">2 to 1</div>
+        </div>
+
+        <!-- Dozens (1st 12, 2nd 12, 3rd 12) -->
+        <div class="dozens-wrapper">
+          <div class="bet-cell cell-dozen" data-bet="doz-1">1st 12</div>
+          <div class="bet-cell cell-dozen" data-bet="doz-2">2nd 12</div>
+          <div class="bet-cell cell-dozen" data-bet="doz-3">3rd 12</div>
+        </div>
+
+        <!-- Outside Bets (1-18, EVEN, RED, BLACK, ODD, 19-36) -->
+        <div class="outside-bets-wrapper">
+          <div class="bet-cell cell-outside" data-bet="low">1 - 18</div>
+          <div class="bet-cell cell-outside" data-bet="even">EVEN</div>
+          <div class="bet-cell cell-outside cell-red" data-bet="red">RED</div>
+          <div class="bet-cell cell-outside cell-black" data-bet="black">BLACK</div>
+          <div class="bet-cell cell-outside" data-bet="odd">ODD</div>
+          <div class="bet-cell cell-outside" data-bet="high">19 - 36</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Controls & Chip Tray -->
+    <footer class="roulette-controls-bar glass-panel">
+      <!-- Chips -->
+      <div class="chip-tray">
+        <button class="casino-chip chip-5 active" data-val="5">$5</button>
+        <button class="casino-chip chip-10" data-val="10">$10</button>
+        <button class="casino-chip chip-25" data-val="25">$25</button>
+        <button class="casino-chip chip-50" data-val="50">$50</button>
+        <button class="casino-chip chip-100" data-val="100">$100</button>
+      </div>
+
+      <!-- Actions -->
+      <div class="roulette-action-btns">
+        <button class="btn-secondary" id="btn-clear-bets">Clear Bets</button>
+        <button class="btn-secondary" id="btn-double-bets">Double 2x</button>
+        <button class="btn-primary spin-roulette-btn" id="btn-spin-wheel">SPIN WHEEL</button>
+      </div>
+    </footer>
+  </main>
+
+  <template id="game-instructions-template">
+    <h4>European Roulette Rules & Payouts</h4>
+    <p>Select your chip denomination, click on the betting table to place bets, and spin the wheel!</p>
+    <ul>
+      <li><strong>Straight Up (Single Number 0-36):</strong> 35 to 1</li>
+      <li><strong>Red / Black, Even / Odd, 1-18 / 19-36:</strong> 1 to 1</li>
+      <li><strong>Dozens & Columns (2 to 1):</strong> 2 to 1</li>
+      <li><strong>Chips Bankroll:</strong> If you run low on chips, click <strong>+ Refill</strong> at the top to get 1,000 free chips anytime!</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="roulette.js"></script>
+</body>
+</html>

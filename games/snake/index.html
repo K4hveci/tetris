@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Snake | Arcade Games</title>
+  <meta name="description" content="Classic retro Snake game reimagined with vibrant neon graphics, golden bonus apples, speed boosts, and customizable wall modes.">
+  <link rel="stylesheet" href="../../shared/css/shared.css">
+  <link rel="stylesheet" href="snake.css">
+</head>
+<body>
+  <div id="arcade-nav-mount" data-title="Neon Snake" data-icon="🐍"></div>
+
+  <main class="snake-container">
+    <div class="snake-top-stats glass-panel">
+      <div class="snake-stat">
+        <span class="stat-title">SCORE</span>
+        <span class="stat-number" id="snake-score">0</span>
+      </div>
+      <div class="snake-stat">
+        <span class="stat-title">HIGH SCORE</span>
+        <span class="stat-number gold" id="snake-highscore">0</span>
+      </div>
+      <div class="snake-stat">
+        <span class="stat-title">LENGTH</span>
+        <span class="stat-number" id="snake-length">3</span>
+      </div>
+      <div class="mode-toggle-wrap">
+        <label class="mode-label">
+          <input type="checkbox" id="chk-wall-mode">
+          <span class="custom-toggle"></span>
+          <span id="wall-mode-text">Wrap Walls</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="canvas-wrapper glass-panel">
+      <canvas id="snake-canvas" width="480" height="480"></canvas>
+      <div class="snake-overlay" id="snake-overlay">
+        <h2 id="snake-overlay-title">NEON SNAKE</h2>
+        <p id="snake-overlay-desc">Use Arrow Keys or Swipe to Slither</p>
+        <button class="btn-primary" id="btn-start-snake">Start Game</button>
+      </div>
+    </div>
+
+    <!-- Mobile Touch D-Pad -->
+    <div class="dpad-container">
+      <button class="dpad-btn up" id="dpad-up">▲</button>
+      <div class="dpad-middle">
+        <button class="dpad-btn left" id="dpad-left">◀</button>
+        <button class="dpad-btn down" id="dpad-down">▼</button>
+        <button class="dpad-btn right" id="dpad-right">▶</button>
+      </div>
+    </div>
+  </main>
+
+  <template id="game-instructions-template">
+    <h4>How to Play Neon Snake</h4>
+    <p>Guide your glowing neon snake to collect food, grow in length, and achieve the highest score possible without running into yourself!</p>
+    <ul>
+      <li><strong>Regular Food (🔴):</strong> +10 points & +1 length.</li>
+      <li><strong>Golden Bonus (⭐):</strong> +50 points! Appears temporarily so grab it quick!</li>
+      <li><strong>Wall Mode:</strong> Toggle whether walls wrap around or trigger a crash.</li>
+    </ul>
+    <h4>Controls</h4>
+    <ul>
+      <li><span class="key-badge">↑</span> / <span class="key-badge">W</span> Turn Up</li>
+      <li><span class="key-badge">↓</span> / <span class="key-badge">S</span> Turn Down</li>
+      <li><span class="key-badge">←</span> / <span class="key-badge">A</span> Turn Left</li>
+      <li><span class="key-badge">→</span> / <span class="key-badge">D</span> Turn Right</li>
+      <li><span class="key-badge">Space</span> Start / Restart</li>
+    </ul>
+  </template>
+
+  <script src="../../shared/js/audio-engine.js"></script>
+  <script src="../../shared/js/arcade-nav.js"></script>
+  <script src="snake.js"></script>
+</body>
+</html>
